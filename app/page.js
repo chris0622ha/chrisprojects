@@ -346,7 +346,7 @@ export default function Home() {
             <rect x="5" y="10" width="6" height="1.5" rx="0.75" fill="#fff" opacity="0.5"/>
             <rect x="5" y="13" width="4" height="1.5" rx="0.75" fill="#fff" opacity="0.35"/>
           </svg>
-          <span style={{ fontWeight:800, fontSize:16, color:"#fff", letterSpacing:0.3 }}>Studio</span>
+          <span style={{ fontWeight:800, fontSize:16, color:"#fff", letterSpacing:0.3 }}>ChrisProjects</span>
         </div>
         <div style={{ display:"flex", gap:8 }}>
           <a href="https://accuratkey.vercel.app" target="_blank" rel="noopener noreferrer" style={{
@@ -377,7 +377,7 @@ export default function Home() {
 
           <div style={{ marginBottom:20, display:"inline-flex", alignItems:"center", gap:8, background:"#1a1a2e", border:"1px solid #2a2a4e", borderRadius:99, padding:"6px 16px" }}>
             <div style={{ width:7, height:7, borderRadius:"50%", background:"#34d399", boxShadow:"0 0 8px #34d399" }}/>
-            <span style={{ fontSize:12, color:"#888", fontWeight:600 }}>Two web apps by chris0622ha</span>
+            <span style={{ fontSize:12, color:"#888", fontWeight:600 }}>ChrisProjects — two web apps by chris0622ha</span>
           </div>
 
           <h1 style={{
@@ -560,7 +560,7 @@ export default function Home() {
               <rect x="1" y="5" width="16" height="16" rx="4" fill="#7c6af7" opacity="0.9"/>
               <rect x="11" y="9" width="16" height="16" rx="4" fill="#f59e0b" opacity="0.85"/>
             </svg>
-            <span style={{ color:"#444", fontSize:13 }}>Built by chris0622ha</span>
+            <span style={{ color:"#444", fontSize:13 }}>ChrisProjects — chris0622ha</span>
           </div>
           <div style={{ display:"flex", gap:20 }}>
             <a href="https://accuratkey.vercel.app" target="_blank" rel="noopener noreferrer" style={{ color:"#555", fontSize:13, textDecoration:"none" }}>AccuratKey</a>
