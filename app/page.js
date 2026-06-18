@@ -234,7 +234,7 @@ function AppCard({ name, tag, tagColor, url, description, stats, features, accen
                 </div>
               )}
               <iframe
-                src={url} style={{ width:"100%", height:"100%", border:"none", display:"block" }}
+                src={url + "?embed=1"} style={{ width:"100%", height:"100%", border:"none", display:"block" }}
                 onLoad={()=>setIframeLoaded(true)}
                 title={name}
               />
