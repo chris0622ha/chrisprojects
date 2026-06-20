@@ -443,6 +443,8 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Removed a stray button from the bottom of the home screen"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed a bug where the age question would show up again every time you signed out. Also added a way for the team to act if we learn an account belongs to someone under 13 after the fact."] },
   
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Notification prompts and background services now only activate after signing in"] },
@@ -457,8 +459,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed several admin panel bugs including maintenance mode locking out the owner, and feedback replies silently failing"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed broken links like /signin sometimes landing on the wrong screen, and updated outdated '15 levels' text to 165"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Added privacy protections for child profiles — progress now saves locally instead of to our servers, and child profiles never appear on public pages or leaderboards"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["Custom SVG icons for all 165 levels — 90 new icons for levels 76-165","Free Run, Century Club, Endurance, Literature, Machine Mode, Legend Tier icon sets"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["SVG tab icons: joystick, map path, calendar grid, keyboard","Section banners with Jump here scroll, 11 sections across 165 levels","Section unlock confetti — 120 pieces + animated popup"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["Custom SVG icons for all 165 levels — 90 new icons for levels 76-165","Free Run, Century Club, Endurance, Literature, Machine Mode, Legend Tier icon sets"] }
 ];
 
 // ── Shared patterns ───────────────────────────────────────────────────────
