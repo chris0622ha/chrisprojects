@@ -179,6 +179,13 @@ function Divider({ label, color }) {
 // ─── Main page ────────────────────────────────────────────────────────────
 function OwnerPageContent() {
   const [confetti, setConfetti] = useState(null);
+  // Stable reference so the Confetti component's useEffect (which depends
+  // on this callback to know when to clear its own dismiss timer) doesn't
+  // see a "new" function on every parent re-render. An inline arrow function
+  // here would recreate that timer from zero on every render, which is why
+  // the section-unlocked overlay was staying on screen indefinitely instead
+  // of clearing itself after a few seconds.
+  const dismissConfetti = useCallback(() => setConfetti(null), []);
   const [activeTab, setActiveTab] = useState("map");
   const [activeEffect, setActiveEffect] = useState(null);
   const [wpmVal, setWpmVal] = useState(0);
@@ -230,7 +237,7 @@ function OwnerPageContent() {
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
       `}</style>
 
-      {confetti && <Confetti sectionName={confetti.name} onDone={()=>setConfetti(null)}/>}
+      {confetti && <Confetti sectionName={confetti.name} onDone={dismissConfetti}/>}
 
       {/* Header */}
       <div style={{marginBottom:40,paddingBottom:20,borderBottom:"1px solid #1e1e30"}}>
