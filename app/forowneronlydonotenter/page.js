@@ -7,7 +7,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 // This isn't bulletproof against someone determined to read the JS bundle
 // and brute-force the hash, but it stops casual discovery of an unlisted
 // "don't enter" URL, which is the actual threat model here.
-const OWNER_PASSWORD_HASH = "747e145f7c86c5d32940557d0056491c7103bf46b847fad1260291f35efd709d";
+const OWNER_PASSWORD_HASH = "5358d8da3d712517a56817ced80e83d5413b416a5a85bee3410ab704eb11413f";
 
 async function sha256Hex(text) {
   const data = new TextEncoder().encode(text);
