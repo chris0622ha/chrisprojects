@@ -18,7 +18,12 @@ export async function POST(req: NextRequest) {
   if (password !== real) {
     // Small delay to make brute-forcing slower without a full rate limiter.
     await new Promise(r => setTimeout(r, 600));
-    return NextResponse.json({ ok: false, error: "Wrong password" }, { status: 401 });
+    // TEMPORARY debug aid: includes lengths only (never the actual values)
+    // to help spot whitespace/truncation issues while this is being
+    // debugged. Remove the lengths from this message once login is
+    // confirmed working - length alone doesn't expose the password, but
+    // there's no reason to leave debug info in a production error forever.
+    return NextResponse.json({ ok: false, error: `Wrong password (got ${password.length} chars, expected ${real.length})` }, { status: 401 });
   }
 
   const res = NextResponse.json({ ok: true });
