@@ -18,7 +18,7 @@ const SECTION_RANGES = [
   { label: "Endurance", icons: ENDURANCE_ICONS, min: 116, max: 130 },
   { label: "Literature", icons: LITERATURE_ICONS, min: 131, max: 145 },
   { label: "Machine Mode", icons: MACHINE_MODE_ICONS, min: 146, max: 155 },
-  { label: "Legend Tier", icons: LEGEND_TIER_ICONS, min: 156, max: 165 },
+  { label: "Legend Tier", icons: LEGEND_TIER_ICONS, min: 156, max: 170 },
 ];
 
 function IconTile({ level, IconComp }) {
@@ -59,7 +59,7 @@ export default function LevelIconGallery() {
   return (
     <div>
       <div style={{ color: "#666", fontSize: 12, marginBottom: 24, textAlign: "center" }}>
-        All 165 level icons — click any tile to copy its hex code
+        All 170 level icons — click any tile to copy its hex code
       </div>
       {SECTION_RANGES.map(section => {
         const levels = ALL_LEVELS.filter(l => l.id >= section.min && l.id <= section.max);
