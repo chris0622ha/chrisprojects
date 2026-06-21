@@ -443,6 +443,7 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 21, 2026", items:["Add workflow_dispatch trigger to the icon-sync workflow for manual runs"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 21, 2026", items:["Make the icon-sync automation also cover level metadata, not just icon shapes"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 21, 2026", items:["Fix real gameplay bugs across multiple games"] },
