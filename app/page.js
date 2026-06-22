@@ -112,16 +112,6 @@ function SvgBtn({href,onClick,color,bg,border,children,icon,size="md",external})
   return <button onClick={onClick} style={s} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>{icon}{children}</button>;
 }
 
-// ── Asset showcase row ────────────────────────────────────────────────────
-function AssetRow({label,children}) {
-  return (
-    <div style={{marginBottom:28}}>
-      <div style={{fontSize:10,color:"#555",letterSpacing:2,textTransform:"uppercase",marginBottom:10,fontFamily:"'JetBrains Mono',monospace"}}>{label}</div>
-      <div style={{display:"flex",flexWrap:"wrap",gap:10,alignItems:"center"}}>{children}</div>
-    </div>
-  );
-}
-
 // ── App card ─────────────────────────────────────────────────────────────
 function AppCard({name,tag,tagColor,url,description,stats,features,accentColor,assets}) {
   const [ref,vis]=useReveal();
@@ -203,7 +193,6 @@ function AppCard({name,tag,tagColor,url,description,stats,features,accentColor,a
 }
 
 // ── AccuratKey assets ─────────────────────────────────────────────────────
-const AK_COLORS = ["#10b981","#3b82f6","#8b5cf6","#f59e0b","#ef4444","#06b6d4","#ec4899","#f97316","#a855f7","#facc15","#6366f1","#fbbf24","#34d399","#f472b6","#fb923c","#818cf8","#22c55e","#2dd4bf","#38bdf8","#84cc16","#a78bfa","#fcd34d","#c084fc","#e879f9","#f43f5e","#94a3b8","#86efac","#60a5fa","#fde68a","#fb7185"];
 const AK_SECTIONS = [
   {label:"Foundations",color:"#10b981",icon:"F",lv:"1-15"},
   {label:"Precision Flow",color:"#818cf8",icon:"P",lv:"16-30"},
@@ -230,117 +219,7 @@ const AK_NODE_STATES = [
   {label:"Locked",color:"#2a2a3e",locked:true},
 ];
 
-function AKAssets() {
-  const [activeTab,setActiveTab]=useState("Map");
-  const [wpm,setWpm]=useState(0);
-  const [blink,setBlink]=useState(true);
-  useEffect(()=>{const t=setInterval(()=>setBlink(b=>!b),500);return()=>clearInterval(t);},[]);
-  useEffect(()=>{let v=0,up=true;const t=setInterval(()=>{v=up?v+1:v-1;if(v>=100)up=false;if(v<=0)up=true;setWpm(v);},25);return()=>clearInterval(t);},[]);
-  return (
-    <div>
-      {/* Color swatches */}
-      <AssetRow label="Level color palette — 30 shown">
-        {AK_COLORS.map((c,i)=><div key={i} title={c} style={{width:24,height:24,borderRadius:5,background:c,cursor:"default",transition:"transform .1s"}} onMouseEnter={e=>e.currentTarget.style.transform="scale(1.4)"} onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}/>)}
-      </AssetRow>
-
-      {/* KKey icon sizes */}
-      <AssetRow label="KKey icon — 5 sizes">
-        {[14,20,28,36,48].map(s=>(
-          <div key={s} style={{textAlign:"center"}}>
-            <svg width={s} height={s} viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#7c6af7" opacity=".15" stroke="#7c6af7" strokeWidth="1.5"/><rect x="3" y="18" width="18" height="3" rx="1.5" fill="#7c6af7" opacity=".3"/><path d="M8 7v10M8 12l6-5M8 12l6 5" stroke="#7c6af7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <div style={{fontSize:8,color:"#444",marginTop:3}}>{s}px</div>
-          </div>
-        ))}
-      </AssetRow>
-
-      {/* Tab icons */}
-      <AssetRow label="Tab icons — click to switch">
-        <div style={{display:"flex",gap:4,background:"#13131f",borderRadius:10,padding:3,border:"1px solid #1e1e30"}}>
-          {AK_TABS.map(t=>(
-            <button key={t.label} onClick={()=>setActiveTab(t.label)} style={{flex:1,padding:"6px 14px",borderRadius:7,border:"none",background:activeTab===t.label?"#7c6af7":"transparent",color:activeTab===t.label?"#fff":"#444",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-              {t.icon}
-              <span style={{fontSize:8,fontWeight:700,letterSpacing:.5,textTransform:"uppercase",fontFamily:"monospace",opacity:activeTab===t.label?.9:.5}}>{t.label}</span>
-            </button>
-          ))}
-        </div>
-      </AssetRow>
-
-      {/* Level nodes */}
-      <AssetRow label="Level map node states">
-        {AK_NODE_STATES.map(({label,color,completed,current,locked})=>(
-          <div key={label} style={{textAlign:"center"}}>
-            <div style={{width:44,height:44,borderRadius:"50%",background:completed?color+"22":current?color+"33":locked?"#0a0a15":"#0d0d18",border:`3px solid ${locked?"#1e1e30":color}`,boxShadow:current?`0 0 16px ${color}77`:"none",display:"flex",alignItems:"center",justifyContent:"center",position:"relative",margin:"0 auto 6px",animation:current?"glow 2s ease-in-out infinite":undefined}}>
-              <div style={{width:10,height:10,borderRadius:"50%",background:locked?"#2a2a3e":color,opacity:locked?.3:1}}/>
-              {completed&&<div style={{position:"absolute",bottom:-2,right:-2,width:14,height:14,borderRadius:"50%",background:color,display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #0d0d18"}}><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 5.5L4.2 8 8 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg></div>}
-              {current&&<div style={{position:"absolute",inset:-6,borderRadius:"50%",border:`2px solid ${color}44`}}/>}
-            </div>
-            <div style={{fontSize:9,color:"#555"}}>{label}</div>
-          </div>
-        ))}
-      </AssetRow>
-
-      {/* Section banners */}
-      <AssetRow label="Section banners — all 11">
-        <div style={{width:"100%",display:"flex",flexDirection:"column",gap:4}}>
-          {AK_SECTIONS.map((s,i)=>(
-            <div key={s.label} style={{height:36,borderRadius:8,background:`linear-gradient(90deg,${s.color}18,${s.color}06)`,border:`1.5px solid ${s.color}${i<3?"55":"28"}`,display:"flex",alignItems:"center",gap:10,padding:"0 12px",position:"relative",overflow:"hidden"}}>
-              <div style={{position:"absolute",left:0,top:0,bottom:0,width:3,background:s.color,opacity:i<3?.9:.4,borderRadius:"8px 0 0 8px"}}/>
-              <div style={{width:22,height:22,borderRadius:6,background:i<3?s.color:s.color+"33",display:"flex",alignItems:"center",justifyContent:"center",marginLeft:4,flexShrink:0}}>
-                <span style={{color:i<3?"#fff":s.color,fontWeight:900,fontSize:10,fontFamily:"monospace"}}>{s.icon}</span>
-              </div>
-              <span style={{color:i<3?s.color:s.color+"88",fontWeight:700,fontSize:11,flex:1}}>{s.label}</span>
-              <span style={{fontSize:9,color:"#444",fontFamily:"monospace"}}>lv {s.lv}</span>
-            </div>
-          ))}
-        </div>
-      </AssetRow>
-
-      {/* WPM bar */}
-      <AssetRow label="WPM progress bar (live)">
-        <div style={{width:"100%",background:"#13131f",borderRadius:10,padding:14,border:"1px solid #1e1e30"}}>
-          <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
-            <span style={{fontSize:11,color:"#555"}}>Words per minute</span>
-            <span style={{fontSize:14,fontWeight:900,color:"#7c6af7",fontFamily:"monospace"}}>{Math.round(wpm*1.35)} WPM</span>
-          </div>
-          <div style={{height:5,background:"#1e1e30",borderRadius:3,overflow:"hidden",marginBottom:6}}>
-            <div style={{height:"100%",background:"linear-gradient(90deg,#7c6af7,#a78bfa)",borderRadius:3,width:wpm+"%",transition:"width .025s"}}/>
-          </div>
-          <div style={{display:"flex",justifyContent:"space-between",fontSize:10,color:"#444"}}>
-            <span>Target: 80 WPM</span><span>Accuracy: {85+Math.round(wpm*.1)}%</span>
-          </div>
-        </div>
-      </AssetRow>
-
-      {/* Animations */}
-      <AssetRow label="Animations">
-        <div style={{textAlign:"center"}}>
-          <div style={{fontSize:14,fontWeight:900,color:"#7c6af7",fontFamily:"monospace",marginBottom:4}}>type here<span style={{borderRight:"2px solid #7c6af7",opacity:blink?1:0,marginLeft:1}}>&nbsp;</span></div>
-          <div style={{fontSize:9,color:"#444"}}>blink cursor</div>
-        </div>
-        <div style={{textAlign:"center"}}>
-          <div style={{fontSize:26,animation:"bounce .6s ease-in-out infinite alternate",display:"inline-block",marginBottom:4}}>🎂</div>
-          <div style={{fontSize:9,color:"#444"}}>birthday bounce</div>
-        </div>
-        <div style={{textAlign:"center"}}>
-          <div style={{width:40,height:40,borderRadius:"50%",background:"#7c6af722",border:"3px solid #7c6af7",animation:"glow 2s ease-in-out infinite",margin:"0 auto 4px"}}/>
-          <div style={{fontSize:9,color:"#444"}}>current level glow</div>
-        </div>
-        <div style={{width:28,height:28,border:"3px solid #7c6af733",borderTopColor:"#7c6af7",borderRadius:"50%",animation:"spin .8s linear infinite"}}/>
-      </AssetRow>
-
-      {/* Buttons */}
-      <AssetRow label="SVG buttons">
-        <SvgBtn color="#7c6af7" size="sm" icon={Ico.bolt}>Speed Mode</SvgBtn>
-        <SvgBtn color="#34d399" size="sm" icon={Ico.star}>Daily Challenge</SvgBtn>
-        <SvgBtn color="#f59e0b" size="sm" icon={Ico.play}>Start Level</SvgBtn>
-        <SvgBtn color="#ef4444" size="sm">Reset</SvgBtn>
-      </AssetRow>
-    </div>
-  );
-}
-
 // ── TrivQuic assets ───────────────────────────────────────────────────────
-const TQ_COLORS = [{hex:"#f59e0b",name:"Primary"},{hex:"#10b981",name:"Correct"},{hex:"#ef4444",name:"Wrong"},{hex:"#3b82f6",name:"Info"},{hex:"#a855f7",name:"Accent"},{hex:"#2d2d44",name:"Border"},{hex:"#1a1a2e",name:"Card"},{hex:"#0f0f1a",name:"Page bg"},{hex:"#9ca3af",name:"Muted"},{hex:"#e5e7eb",name:"Text"},{hex:"#34d399",name:"Success"},{hex:"#f97316",name:"Warning"}];
 const TQ_EFFECTS = [
   {name:"wave",color:"#06b6d4",css:s=>`@keyframes __wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}} ${s}{animation:__wave .5s ease-in-out infinite!important;}`},
   {name:"shake",color:"#ef4444",css:s=>`@keyframes __shake{0%,100%{transform:translate(0)}25%{transform:translate(-8px,4px)}50%{transform:translate(8px,-4px)}75%{transform:translate(-6px,6px)}} ${s}{animation:__shake .1s infinite;}`},
@@ -357,89 +236,6 @@ const TQ_EFFECTS = [
   {name:"earthquake",color:"#f43f5e",css:s=>`@keyframes __quake{0%,100%{transform:translate(0,0)}25%{transform:translate(-8px,4px)}50%{transform:translate(8px,-4px)}75%{transform:translate(-4px,8px)}} ${s}{animation:__quake .1s infinite;}`},
   {name:"zoom",color:"#818cf8",css:s=>`@keyframes __zoom{0%{transform:scale(1)}100%{transform:scale(1.5)}} ${s}{animation:__zoom 3s ease-in forwards;}`},
 ];
-
-function TQAssets() {
-  const [fx,setFx]=useState(null);
-  const boxRef=useRef(null); const styleRef=useRef(null); const timerRef=useRef(null);
-  const SEL=".tq-fx-box";
-  const fireEffect=eff=>{
-    if(timerRef.current)clearTimeout(timerRef.current);
-    if(styleRef.current){styleRef.current.remove();styleRef.current=null;}
-    if(boxRef.current){boxRef.current.style.cssText="";}
-    const s=document.createElement("style"); s.textContent=eff.css(SEL); document.head.appendChild(s);
-    styleRef.current=s; setFx(eff.name);
-    timerRef.current=setTimeout(()=>{s.remove();styleRef.current=null;if(boxRef.current)boxRef.current.style.cssText="";setFx(null);},3500);
-  };
-  return (
-    <div>
-      {/* Colors */}
-      <AssetRow label="Brand palette — 12 colors">
-        {TQ_COLORS.map(({hex,name})=>(
-          <div key={hex} style={{textAlign:"center"}}>
-            <div title={hex} style={{width:40,height:40,borderRadius:8,background:hex,marginBottom:3,border:"1px solid #ffffff11"}}/>
-            <div style={{fontSize:8,color:"#888"}}>{name}</div>
-          </div>
-        ))}
-      </AssetRow>
-
-      {/* Answer states */}
-      <AssetRow label="Answer button states">
-        <div style={{display:"flex",flexDirection:"column",gap:6,width:"100%",maxWidth:340}}>
-          {[{l:"Paris — default",bg:"#1a1a2e",b:"#2d2d44",c:"#e5e7eb"},{l:"London — correct ✓",bg:"#064e3b",b:"#10b981",c:"#10b981"},{l:"Berlin — wrong ✗",bg:"#450a0a",b:"#ef4444",c:"#ef4444"},{l:"Madrid — selected",bg:"#1a1a2e",b:"#f59e0b",c:"#f59e0b"}].map(({l,bg,b,c})=>(
-            <div key={l} style={{background:bg,border:`2px solid ${b}`,borderRadius:12,color:c,fontSize:13,fontWeight:700,padding:"12px 16px"}}>{l}</div>
-          ))}
-        </div>
-      </AssetRow>
-
-      {/* Timer arc */}
-      <AssetRow label="Timer arc SVG">
-        {[100,66,33,8].map(pct=>{const r=20,circ=2*Math.PI*r,col=pct>50?"#10b981":pct>20?"#f59e0b":"#ef4444";return(
-          <div key={pct} style={{textAlign:"center"}}>
-            <svg width="52" height="52" viewBox="0 0 52 52">
-              <circle cx="26" cy="26" r={r} fill="none" stroke="#2d2d44" strokeWidth="4"/>
-              <circle cx="26" cy="26" r={r} fill="none" stroke={col} strokeWidth="4" strokeDasharray={circ} strokeDashoffset={circ*(1-pct/100)} strokeLinecap="round" transform="rotate(-90 26 26)"/>
-              <text x="26" y="31" textAnchor="middle" fill={col} fontSize="11" fontWeight="bold" fontFamily="monospace">{pct}%</text>
-            </svg>
-            <div style={{fontSize:9,color:"#444"}}>{pct>50?"safe":pct>20?"warn":"crit"}</div>
-          </div>
-        );})}
-      </AssetRow>
-
-      {/* Game effects */}
-      <AssetRow label="Game effects — click to preview">
-        <div style={{width:"100%"}}>
-          <div className="tq-fx-box" ref={boxRef} style={{background:"linear-gradient(135deg,#1a1a2e,#0f0f1a)",border:`2px solid ${fx?"#f59e0b":"#2d2d44"}`,borderRadius:14,padding:"20px",textAlign:"center",marginBottom:10,fontSize:16,fontWeight:900,color:"#f59e0b",minHeight:70,display:"flex",alignItems:"center",justifyContent:"center",transition:"border-color .3s"}}>
-            {fx?`Effect: ${fx}`:"← Click an effect"}
-          </div>
-          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            {TQ_EFFECTS.map(eff=>(
-              <button key={eff.name} onClick={()=>fireEffect(eff)} style={{padding:"5px 11px",borderRadius:7,border:`1px solid ${eff.color}55`,background:fx===eff.name?eff.color+"22":"transparent",color:eff.color,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"monospace",transition:"all .15s"}}>{eff.name}</button>
-            ))}
-          </div>
-        </div>
-      </AssetRow>
-
-      {/* Score display */}
-      <AssetRow label="Score & streak">
-        {[{s:0,k:0},{s:3,k:2},{s:7,k:5},{s:10,k:10}].map(({s,k})=>(
-          <div key={s} style={{background:"#1a1a2e",border:"1px solid #2d2d44",borderRadius:10,padding:"14px 18px",textAlign:"center",minWidth:72}}>
-            <div style={{fontSize:26,fontWeight:900,color:"#f59e0b",fontFamily:"monospace"}}>{s}</div>
-            <div style={{fontSize:9,color:"#9ca3af",marginTop:2}}>score</div>
-            {k>0&&<div style={{marginTop:6,fontSize:11,color:"#ef4444",fontWeight:700}}>🔥 ×{k}</div>}
-          </div>
-        ))}
-      </AssetRow>
-
-      {/* TQ Buttons */}
-      <AssetRow label="SVG buttons">
-        <SvgBtn color="#f59e0b" size="sm" icon={Ico.play}>Play Now</SvgBtn>
-        <SvgBtn color="#10b981" size="sm" icon={Ico.star}>Daily</SvgBtn>
-        <SvgBtn color="#3b82f6" size="sm" icon={Ico.globe}>Leaderboard</SvgBtn>
-        <SvgBtn color="#a855f7" size="sm" icon={Ico.bolt}>Quick Game</SvgBtn>
-      </AssetRow>
-    </div>
-  );
-}
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
@@ -474,44 +270,6 @@ const CHANGELOG = [
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Removed ghost mode (the replay cursor feature)"] }
 ];
-
-// ── Shared patterns ───────────────────────────────────────────────────────
-function SharedAssets() {
-  return (
-    <div style={{background:"#0a0a14",border:"1px solid #1e1e30",borderRadius:16,padding:"28px 24px",marginTop:40}}>
-      <div style={{fontSize:11,color:"#34d399",letterSpacing:2,textTransform:"uppercase",fontWeight:700,marginBottom:20,fontFamily:"'JetBrains Mono',monospace"}}>Shared Patterns</div>
-
-      <AssetRow label="Dark card with color accent">
-        <div style={{display:"flex",gap:8,flexWrap:"wrap",width:"100%"}}>
-          {["#7c6af7","#f59e0b","#10b981","#ef4444","#06b6d4"].map(c=>(
-            <div key={c} style={{flex:"1 1 120px",background:`linear-gradient(135deg,${c}11,${c}05)`,border:`1px solid ${c}33`,borderLeft:`3px solid ${c}`,borderRadius:10,padding:12}}>
-              <div style={{color:c,fontSize:11,fontWeight:700,marginBottom:3}}>Card</div>
-              <div style={{color:"#555",fontSize:10}}>Shared style</div>
-            </div>
-          ))}
-        </div>
-      </AssetRow>
-
-      <AssetRow label="Status badges">
-        {[{l:"AccuratKey",c:"#7c6af7"},{l:"TrivQuic",c:"#f59e0b"},{l:"Live",c:"#10b981"},{l:"YOU",c:"#a78bfa"},{l:"NEW",c:"#ef4444"},{l:"PRO",c:"#facc15"}].map(({l,c})=>(
-          <span key={l} style={{background:c+"22",color:c,fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:99,border:`1px solid ${c}44`,letterSpacing:1,textTransform:"uppercase",fontFamily:"monospace"}}>{l}</span>
-        ))}
-      </AssetRow>
-
-      <AssetRow label="Spinners">
-        {[["#7c6af7",32],["#f59e0b",24],["#10b981",18],["#ef4444",14]].map(([c,s])=>(
-          <div key={c} style={{width:s,height:s,border:`${Math.max(2,s/8)}px solid ${c}33`,borderTopColor:c,borderRadius:"50%",animation:"spin .8s linear infinite"}}/>
-        ))}
-      </AssetRow>
-
-      <AssetRow label="SVG button styles">
-        <SvgBtn href="https://accuratkey.vercel.app" external color="#7c6af7" size="sm" icon={Ico.keyboard("#7c6af7")}>AccuratKey</SvgBtn>
-        <SvgBtn href="https://trivquic.vercel.app" external color="#f59e0b" size="sm" icon={Ico.trivia("#f59e0b")}>TrivQuic</SvgBtn>
-        <SvgBtn href="https://github.com/chris0622ha" external color="#aaa" size="sm" icon={Ico.github}>GitHub</SvgBtn>
-      </AssetRow>
-    </div>
-  );
-}
 
 // ── Main ──────────────────────────────────────────────────────────────────
 export default function Home() {
@@ -594,10 +352,9 @@ export default function Home() {
         {/* AccuratKey */}
         <section id="accuratkey" style={{padding:"0 clamp(20px,5vw,80px)",maxWidth:1280,margin:"0 auto"}}>
           <AppCard name="AccuratKey" tag="AccuratKey" tagColor="#7c6af7" url="https://accuratkey.vercel.app" accentColor="#7c6af7" side="left"
-            description="A serious keyboard training app with 165 levels across 11 sections — from home-row basics to impossible long-word gauntlets. Multi-profile, WPM tracking, streak system, and daily challenges."
-            stats={[{value:165,label:"Levels"},{value:10,label:"Layouts"},{value:11,label:"Sections"}]}
-            features={["165 levels across Foundations, Word Power, Literature, Legend Tier and more","10 keyboard layouts including Colemak, Dvorak, QWERTZ, and Korean","Multi-profile system — one account, multiple family members","WPM personal bests, combo multipliers, and Keys currency","Section confetti and unlock animations when you reach new territory","Daily challenge with global leaderboard — new words every day"]}
-            assets={<AKAssets/>}
+            description="A serious keyboard training app with 170 levels across 12 sections — from home-row basics to impossible long-word gauntlets. Multi-profile, WPM tracking, streak system, and daily challenges."
+            stats={[{value:170,label:"Levels"},{value:10,label:"Layouts"},{value:12,label:"Sections"}]}
+            features={["170 levels across Foundations, Word Power, Literature, Legend Tier and more","10 keyboard layouts including Colemak, Dvorak, QWERTZ, and Korean","Multi-profile system — one account, multiple family members","WPM personal bests, combo multipliers, and Keys currency","Section confetti and unlock animations when you reach new territory","Daily challenge with global leaderboard — new words every day"]}
           />
         </section>
 
@@ -609,13 +366,7 @@ export default function Home() {
             description="A one-tap trivia app with 38 games across 10 categories. Answer fast, climb the leaderboard, and take on daily challenges — built for speed and competition."
             stats={[{value:38,label:"Games"},{value:10,label:"Categories"},{value:1,suffix:" tap",label:"to answer"}]}
             features={["38 trivia games across Science, History, Pop Culture, Geography and more","Google sign-in with per-UID stats saved in Firebase Firestore","Personal best tracking and profile page","Daily challenge — one new trivia set every day","Global leaderboard by username","Streak multipliers and score tracking"]}
-            assets={<TQAssets/>}
           />
-        </section>
-
-        {/* Shared assets */}
-        <section style={{padding:"0 clamp(20px,5vw,80px)",maxWidth:1280,margin:"0 auto"}}>
-          <SharedAssets/>
         </section>
 
         {/* Changelog */}
