@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 22, 2026", items:["Add Tug of War - new game with a real momentum/decay mechanic"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 21, 2026", items:["Add workflow_dispatch trigger to the icon-sync workflow for manual runs"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 21, 2026", items:["Make the icon-sync automation also cover level metadata, not just icon shapes"] },
@@ -265,10 +267,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Add accurate error message for Google/GitHub sign-in failing in private/incognito browsing"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed the back button sometimes skipping past screens it shouldn't"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Sign-in is now disabled inside the tqak preview embed, matching TrivQuic"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed switching profiles not working on mobile"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Removed ghost mode (the replay cursor feature)"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Sign-in is now disabled inside the tqak preview embed, matching TrivQuic"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
