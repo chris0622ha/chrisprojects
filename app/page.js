@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Rhyme Time no longer shows you the answers"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Remove the entire Chill category (Zen Mode, Typewriter Story, Typing Journal, Poetry Mode, Quotes, H"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 23, 2026", items:["Rebuild Brick Breaker with a real ball/paddle/collision mechanic"] },
