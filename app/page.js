@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Fix keyboard disconnect never re-triggering the no-keyboard block screen"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 25, 2026", items:["Build the real Themes/Sounds/Fonts shop properly - and undo a mistake along the way"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Fixed the Shop button doing nothing (was navigating to a dead URL instead of opening the theme shop)"] },
