@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Removed the Stars rating from the level-completion certificate"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Fix keyboard disconnect never re-triggering the no-keyboard block screen"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 25, 2026", items:["Build the real Themes/Sounds/Fonts shop properly - and undo a mistake along the way"] },
@@ -265,10 +267,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Revert temporary Google account picker forcing - back to normal auto-select behavior"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Added downloadable milestone and birthday certificates"] },
   
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Replace Google Translate widget with real, hand-maintained translations (English, Korean, Spanish)"] },
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed outdated links in the admin panel's Quick Links section"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed a difficulty label showing as raw text, hardened the Test tab against a rare crash from malformed saved word lists"] }
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Replace Google Translate widget with real, hand-maintained translations (English, Korean, Spanish)"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
