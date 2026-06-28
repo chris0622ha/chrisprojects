@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed crash in admin analytics tab - failStats and failStatsLoading were used throughout via setFailSt"] },
   
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 27, 2026", items:["Added a Wrong Answers setting to Solo mode - Count (default, wrong answers reset streak and cost point"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Freestyle - genuinely open-ended creative writing, validated against the real rhyme dictionary"] },
