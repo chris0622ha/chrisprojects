@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 1, 2026", items:["Fixed maintenance flash, analytics level-1, Synonyms/Antonyms validation, Roulette spin sound, remove "] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed Start Game button doing nothing, fix content being smaller on non-map tabs"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Removed Mad Libs, remove answer spoilers from Synonyms and Antonyms"] },
